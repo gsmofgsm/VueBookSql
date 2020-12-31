@@ -5,15 +5,16 @@
       <template slot-scope="{ result: { data, loading }, isLoading }">
         <!-- Some content -->
         <div v-if="isLoading || loading">Loading...</div>
-        <ul v-else>
-          <li
+        <div v-else>
+          <a
+            href="#"
             v-for="category of data.categories"
             :key="category.id"
-            class="category"
+            class="category link-margin"
           >
-            {{ category.id }} {{ category.name }}
-          </li>
-        </ul>
+            {{ category.id }}. {{ category.name }}
+          </a>
+        </div>
       </template>
     </ApolloQuery>
   </div>
@@ -44,3 +45,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.link-margin {
+  margin-right: 24px;
+}
+</style>
