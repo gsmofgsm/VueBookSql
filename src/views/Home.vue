@@ -10,6 +10,7 @@
             href="#"
             v-for="category of data.categories"
             :key="category.id"
+            @click="selectCategory(category.id)"
             class="category link-margin"
           >
             {{ category.id }}. {{ category.name }}
@@ -29,7 +30,10 @@
       </template>
     </ApolloQuery> -->
 
-    <ApolloQuery :query="require('@/graphql/queries/Category.gql')">
+    <ApolloQuery
+      :query="require('@/graphql/queries/Category.gql')"
+      :variables="{ id: selectedCategory }"
+    >
       <!-- The result will automatically updated -->
       <template slot-scope="{ result: { data, loading }, isLoading }">
         <!-- Some content -->
@@ -53,6 +57,7 @@ export default {
   components: {},
   data() {
     return {
+      selectedCategory: 1,
       categories: [],
     };
   },
@@ -66,6 +71,11 @@ export default {
         }
       }
     `,
+  },
+  methods: {
+    selectCategory(category) {
+      this.selectedCategory = category;
+    },
   },
 };
 </script>

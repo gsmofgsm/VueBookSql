@@ -1,5 +1,5 @@
-{
-  category(id: 1) {
+query($id: ID!) {
+  category(id: $id) {
     name
     books {
       id
