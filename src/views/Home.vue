@@ -2,9 +2,9 @@
   <div class="home">
     <ApolloQuery :query="require('@/graphql/queries/Categories.gql')">
       <!-- The result will automatically updated -->
-      <template slot-scope="{ result: { data, loading } }">
+      <template slot-scope="{ result: { data, loading }, isLoading }">
         <!-- Some content -->
-        <div v-if="loading">Loading...</div>
+        <div v-if="isLoading || loading">Loading...</div>
         <ul v-else>
           <li
             v-for="category of data.categories"
