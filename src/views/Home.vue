@@ -17,6 +17,18 @@
         </div>
       </template>
     </ApolloQuery>
+    <ApolloQuery :query="require('@/graphql/queries/Books.gql')">
+      <!-- The result will automatically updated -->
+      <template slot-scope="{ result: { data, loading }, isLoading }">
+        <!-- Some content -->
+        <div v-if="isLoading || loading">Loading...</div>
+        <ul v-else>
+          <li href="#" v-for="book of data.books" :key="book.id">
+            {{ book.id }}. {{ book.title }}
+          </li>
+        </ul>
+      </template>
+    </ApolloQuery>
   </div>
 </template>
 
