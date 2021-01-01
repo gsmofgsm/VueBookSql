@@ -27,11 +27,15 @@
       <ApolloQuery :query="query">
         <template slot-scope="{ result: { data, loading }, isLoading }">
           <div v-if="isLoading || loading">Loading...</div>
-          <ul v-else>
-            <li href="#" v-for="book of data.books" :key="book.id">
-              {{ book.id }}. {{ book.title }}
-            </li>
-          </ul>
+          <div v-else>
+            <div v-for="book of data.books" :key="book.id">
+              <router-link :to="`/books/${book.id}`">
+                {{ book.id }}. {{ book.title }}
+              </router-link>
+              <div>{{ book.author }}</div>
+              <img :src="book.image" alt="cover image" />
+            </div>
+          </div>
         </template>
       </ApolloQuery>
     </div>
@@ -39,11 +43,15 @@
       <ApolloQuery :query="query" :variables="{ featured: true }">
         <template slot-scope="{ result: { data, loading }, isLoading }">
           <div v-if="isLoading || loading">Loading...</div>
-          <ul v-else>
-            <li href="#" v-for="book of data.booksByFeatured" :key="book.id">
-              {{ book.id }}. {{ book.title }}
-            </li>
-          </ul>
+          <div v-else>
+            <div v-for="book of data.booksByFeatured" :key="book.id">
+              <router-link :to="`/books/${book.id}`">
+                {{ book.id }}. {{ book.title }}
+              </router-link>
+              <div>{{ book.author }}</div>
+              <img :src="book.image" alt="cover image" />
+            </div>
+          </div>
         </template>
       </ApolloQuery>
     </div>
@@ -53,11 +61,15 @@
         <template slot-scope="{ result: { data, loading }, isLoading }">
           <!-- Some content -->
           <div v-if="isLoading || loading">Loading...</div>
-          <ul v-else>
-            <li href="#" v-for="book of data.category.books" :key="book.id">
-              {{ book.id }}. {{ book.title }}
-            </li>
-          </ul>
+          <div v-else>
+            <div v-for="book of data.category.books" :key="book.id">
+              <router-link :to="`/books/${book.id}`">
+                {{ book.id }}. {{ book.title }}
+              </router-link>
+              <div>{{ book.author }}</div>
+              <img :src="book.image" alt="cover image" />
+            </div>
+          </div>
         </template>
       </ApolloQuery>
     </div>
