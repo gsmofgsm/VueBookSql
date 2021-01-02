@@ -1,7 +1,7 @@
 <template>
   <div class="create">
-    <h1>Create Book</h1>
-    <form action="#" method="POST" @submit.prevent="addBook">
+    <h1>Edit Book</h1>
+    <form action="#" method="POST" @submit.prevent="editBook">
       <div class="form-group">
         <label for="title">Title</label>
         <input type="text" name="title" id="title" v-model="title" />
@@ -65,6 +65,8 @@
 
 <script>
 import upsertBook from "@/graphql/mutations/UpsertBook.gql";
+import book from "@/graphql/queries/Book.gql";
+
 export default {
   data() {
     return {
@@ -75,16 +77,44 @@ export default {
       link: "",
       featured: "",
       category: "",
+      book: null,
     };
   },
+  apollo: {
+    // Advanced query with parameters
+    // The 'variables' method is watched by vue
+    book: {
+      query: book,
+      // Reactive parameters
+      variables() {
+        // Use vue reactive properties here
+        if (this.$route && this.$route.params) {
+          return {
+            id: this.$route.params.id,
+          };
+        }
+      },
+      // Optional result hook
+      result({ data }) {
+        this.title = data.book.title;
+        this.author = data.book.author;
+        this.image = data.book.image;
+        this.description = data.book.description;
+        this.link = data.book.link;
+        this.featured = data.book.featured;
+        this.category = data.book.category.id;
+      },
+    },
+  },
   methods: {
-    addBook() {
+    editBook() {
       this.$apollo
         .mutate({
           // Query
           mutation: upsertBook,
           // Parameters
           variables: {
+            id: this.$route.params.id,
             title: this.title,
             author: this.author,
             image: this.image,
@@ -97,7 +127,7 @@ export default {
         .then((data) => {
           // Result
           console.log(data);
-          this.$router.push("/");
+          this.$router.push(`/books/${this.$route.params.id}`);
         })
         .catch((error) => {
           // Error

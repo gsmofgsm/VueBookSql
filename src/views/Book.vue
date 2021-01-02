@@ -12,6 +12,12 @@
           <div>{{ data.book.title }}</div>
           <div>{{ data.book.author }}</div>
           <img :src="data.book.image" alt="book cover" />
+          <div>
+            <router-link :to="`/books/${data.book.id}/edit`" class="link-margin"
+              >Edit</router-link
+            >
+            <router-link to="#" class="link-margin">Delete</router-link>
+          </div>
         </div>
       </template>
     </ApolloQuery>
