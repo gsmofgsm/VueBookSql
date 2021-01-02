@@ -1,21 +1,21 @@
 <template>
-  <div class="create">
-    <h1>Create Book</h1>
+  <div class="create container mx-auto">
+    <h1 class="mb-4">Create Book</h1>
     <form action="#" method="POST" @submit.prevent="addBook">
       <div class="form-group">
-        <label for="title">Title</label>
+        <label class="font-bold mb-2" for="title">Title</label>
         <input type="text" name="title" id="title" v-model="title" />
       </div>
       <div class="form-group">
-        <label for="author">Author</label>
+        <label class="font-bold mb-2" for="author">Author</label>
         <input type="text" name="author" id="author" v-model="author" />
       </div>
       <div class="form-group">
-        <label for="image">Image</label>
+        <label class="font-bold mb-2" for="image">Image</label>
         <input type="text" name="image" id="image" v-model="image" />
       </div>
       <div class="form-group">
-        <label for="description">Description</label>
+        <label class="font-bold mb-2" for="description">Description</label>
         <textarea
           name="description"
           id="description"
@@ -25,11 +25,11 @@
         ></textarea>
       </div>
       <div class="form-group">
-        <label for="link">Link</label>
+        <label class="font-bold mb-2" for="link">Link</label>
         <input type="text" name="link" id="link" v-model="link" />
       </div>
       <div class="form-group">
-        <label for="featured">Featured</label>
+        <label class="font-bold mb-2" for="featured">Featured</label>
         <input
           type="checkbox"
           name="featured"
@@ -38,7 +38,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="category">Category</label>
+        <label class="font-bold mb-2" for="category">Category</label>
         <ApolloQuery :query="require('@/graphql/queries/Categories.gql')">
           <!-- The result will automatically updated -->
           <template slot-scope="{ result: { data, loading }, isLoading }">
@@ -112,8 +112,13 @@ export default {
 .form-group {
   margin-bottom: 32px;
 }
-input[type="text"] {
+input[type="text"], textarea {
   padding: 10px 14px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+label {
+  display: block;
 }
 button {
   padding: 16px;
