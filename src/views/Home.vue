@@ -93,6 +93,7 @@ import categoriesQuery from "@/graphql/queries/Categories.gql";
 import booksQuery from "@/graphql/queries/Books.gql";
 import booksFeaturedQuery from "@/graphql/queries/BooksFeatured.gql";
 import bookListing from "@/components/BookListing";
+// import gql from 'graphql-tag';
 
 export default {
   name: "Home",
@@ -105,8 +106,20 @@ export default {
       selectedCategory: "all",
       query: booksQuery,
       categories: [],
+      // me: null,
     };
   },
+  // apollo: {
+  //   me: gql`
+  //     query {
+  //       me {
+  //         id
+  //         name
+  //         email
+  //       }
+  //     }
+  //   `
+  // },
   methods: {
     selectCategory(category) {
       if (category === "all") {

@@ -46,6 +46,16 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/EditBook.vue"),
   },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/Login.vue'),
+  },
+  {
+    path: '/protected',
+    name: 'protected',
+    component: () => import('../views/Protected.vue'),
+  },
 ];
 
 const router = new VueRouter({

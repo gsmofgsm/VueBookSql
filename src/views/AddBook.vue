@@ -109,22 +109,4 @@ export default {
 </script>
 
 <style scoped>
-.form-group {
-  margin-bottom: 32px;
-}
-input[type="text"], textarea {
-  padding: 10px 14px;
-  border: 1px solid lightgray;
-  border-radius: 5px;
-}
-label {
-  display: block;
-}
-button {
-  padding: 16px;
-  background: #027bff;
-  color: white;
-  border-radius: 5px;
-  font-size: 16px;
-}
 </style>

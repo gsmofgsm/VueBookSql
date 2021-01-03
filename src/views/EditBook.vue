@@ -138,18 +138,5 @@ export default {
 };
 </script>
 
-<style scoped>
-.form-group {
-  margin-bottom: 32px;
-}
-input[type="text"] {
-  padding: 10px 14px;
-}
-button {
-  padding: 16px;
-  background: #027bff;
-  color: white;
-  border-radius: 5px;
-  font-size: 16px;
-}
+<style>
 </style>
